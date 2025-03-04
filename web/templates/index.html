@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Товары</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>Список товаров</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Категория</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Новый</th>
+    </tr>
+    {{range .products}}
+    <tr>
+        <td>{{.ID}}</td>
+        <td>{{.Name}}</td>
+        <td>{{.Category}}</td>
+        <td>{{.Price}}</td>
+        <td>{{.Quantity}}</td>
+        <td>{{.New}}</td>
+    </tr>
+    {{end}}
+</table>
+<a href="/sell">Продать товар</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Продажа товара</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>Продажа товара</h1>
+<form action="/sell" method="POST">
+    <label for="product_id">Выберите товар:</label>
+    <select name="product_id" id="product_id">
+        {{range .products}}
+        <option value="{{.ID}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <br>
+    <label for="quantity">Количество:</label>
+    <input type="number" name="quantity" id="quantity" required>
+    <label for="quantity">Cкидка(за всё):</label>
+    <input type="number" name="discount" id="discount" required>
+    <br>
+    <button type="submit">Продать</button>
+</form>
+</body>
+</html>
