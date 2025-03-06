@@ -24,7 +24,7 @@ func main() {
 
 	// Регистрируем обработчики
 	handlers.SetupProductRoutes(r, db)
-
+	handlers.SetupPCRoutes(r, db)
 	// Запускаем сервер
 	log.Println("Сервер запущен на порту 8080")
 	r.Run(":8080")

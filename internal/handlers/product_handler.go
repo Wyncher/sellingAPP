@@ -33,11 +33,12 @@ func SetupProductRoutes(r *gin.Engine, db *sql.DB) {
 
 	// API для продажи товара
 	r.POST("/sell", func(c *gin.Context) {
-		productID := c.PostForm("product_id")
+		productName := c.PostForm("product_id")
 		quantity := c.PostForm("quantity")
-		productIDInt, _ := strconv.Atoi(productID)
+		discount := c.PostForm("discount")
 		quantityInt, _ := strconv.Atoi(quantity)
-		err := service.SellProduct(productIDInt, quantityInt)
+		discountInt, _ := strconv.Atoi(discount)
+		err := service.SellProduct(productName, quantityInt, discountInt)
 		if err != nil {
 			c.HTML(http.StatusBadRequest, "sell.html", gin.H{"error": err.Error()})
 			return

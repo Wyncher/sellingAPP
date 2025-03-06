@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Продажа товара</title>
+    <title>Сборка компьютера</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <h1>Продажа товара</h1>
-<form action="/sell" method="POST">
+<form action="/sellPC" method="POST">
     <label for="product_id">Выберите товар:</label>
     <select name="product_id" id="product_id">
         {{range .products}}

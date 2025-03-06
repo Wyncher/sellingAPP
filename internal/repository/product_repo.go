@@ -8,7 +8,7 @@ import (
 // Интерфейс для работы с товарами
 type ProductRepository interface {
 	GetAll() ([]models.Product, error)
-	SellProduct(productID, quantity int) error
+	SellProduct(productName string, quantity, discount int) error
 }
 
 // Реализация интерфейса
@@ -31,7 +31,7 @@ func (r *productRepo) GetAll() ([]models.Product, error) {
 	var products []models.Product
 	for rows.Next() {
 		var p models.Product
-		if err := rows.Scan(&p.ID, &p.Price, &p.Name, &p.Additional, &p.New, &p.Category, &p.Quantity); err != nil {
+		if err := rows.Scan(&p.ID, &p.Name, &p.Quantity, &p.Category, &p.New, &p.Price, &p.Procurement, &p.Profit); err != nil {
 			return nil, err
 		}
 		products = append(products, p)
@@ -40,7 +40,7 @@ func (r *productRepo) GetAll() ([]models.Product, error) {
 }
 
 // Продать товар
-func (r *productRepo) SellProduct(productID, quantity int) error {
-	_, err := r.db.Exec("UPDATE products SET quantity = quantity - $1 WHERE id = $2", quantity, productID)
+func (r *productRepo) SellProduct(productName string, quantity, discount int) error {
+	_, err := r.db.Exec("SELECT public.sale_parts($1,$2,$3)", productName, quantity, discount)
 	return err
 }

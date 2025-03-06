@@ -1,7 +1,6 @@
 package services
 
 import (
-	"errors"
 	"selling/internal/repository"
 )
 
@@ -14,21 +13,6 @@ func NewProductService(repo repository.ProductRepository) *ProductService {
 }
 
 // Продажа товара
-func (s *ProductService) SellProduct(productID, quantity int) error {
-	// Проверяем, есть ли товар в наличии
-	products, err := s.repo.GetAll()
-	if err != nil {
-		return err
-	}
-
-	for _, p := range products {
-		if p.ID == productID {
-			//if p.Quantity < quantity {
-			//	return errors.New("недостаточно товара на складе")
-			//}
-			return s.repo.SellProduct(productID, quantity)
-		}
-	}
-
-	return errors.New("товар не найден")
+func (s *ProductService) SellProduct(productName string, quantity, discount int) error {
+	return s.repo.SellProduct(productName, quantity, discount)
 }
