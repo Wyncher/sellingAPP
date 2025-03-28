@@ -6,21 +6,116 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<h1>Продажа товара</h1>
-<form action="/sellPC" method="POST">
-    <label for="product_id">Выберите товар:</label>
-    <select name="product_id" id="product_id">
-        {{range .products}}
+<div class="menu">
+    <a href="/">Список комплектующих</a>
+    <a href="/sell">Продать комплектующие</a>
+    <a href="/soldParts">Список проданных комплектующих</a>
+    <a href="/addPC">Собрать компьютер</a>
+
+</div>
+<div class="menu">
+    <a href="/listPc">Список компьютеров</a>
+    <a href="/volodyaListPc">Список компьютеров Володя</a>
+    <a href="/soldPc">Список проданных компьютеров</a>
+</div>
+<h1>Собрать компьютер</h1>
+<form action="/addPC" method="POST" class="form_container">
+    <label for="gpu_name">Видеокарта:</label>
+    <select name="gpu_name" id="gpu_name">
+        {{range .gpu}}
         <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
         {{end}}
     </select>
+    <label for="cpu_name">Процессор:</label>
+    <select name="cpu_name" id="cpu_name">
+        {{range .cpu}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="mb_name">Материнская плата:</label>
+    <select name="mb_name" id="mb_name">
+        {{range .mb}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select> <label for="ram1_name">Оперативная память(слот 1):</label>
+    <select name="ram1_name" id="ram1_name">
+        {{range .ram}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="ram2_name">Оперативная память(слот 2)</label>
+    <select name="ram2_name" id="ram2_name">
+        {{range .ram}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="ram3_name">Оперативная память(слот 3)</label>
+    <select name="ram3_name" id="ram3_name">
+        {{range .ram}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="ram4_name">Оперативная память(слот 4)</label>
+    <select name="ram4_name" id="ram4_name">
+        {{range .ram}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="power_name">Блок питания:</label>
+    <select name="power_name" id="power_name">
+        {{range .power}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="cpu_fan_name">Охлаждение процессора:</label>
+    <select name="cpu_fan_name" id="cpu_fan_name">
+        {{range .cpu_fan}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="case_name">Корпус:</label>
+    <select name="case_name" id="case_name">
+        {{range .case}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="case_fan_name">Корпусные вентиляторы:</label>
+    <select name="case_fan_name" id="case_fan_name">
+        {{range .case_fan}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+
+    <label for="case_fan_count">Количество вентиляторов в корпусе:</label>
+    <input name="case_fan_count" id="case_fan_count" type="number" placeholder="шт.">
+    <label for="ssd1_name">SSD 1:</label>
+    <select name="ssd1_name" id="ssd1_name">
+        {{range .ssd}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="ssd2_name">SSD 2:</label>
+    <select name="ssd2_name" id="ssd2_name">
+        {{range .ssd}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="hdd_name">HDD:</label>
+    <select name="hdd_name" id="hdd_name">
+        {{range .hdd}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="network_name">Сетевая карта:</label>
+    <select name="network_name" id="network_name">
+        {{range .network}}
+        <option value="{{.Name}}">{{.Name}} ({{.Quantity}} шт.)</option>
+        {{end}}
+    </select>
+    <label for="volodya">Володя</label>
+    <input type="checkbox" id="volodya" name="volodya" />
     <br>
-    <label for="quantity">Количество:</label>
-    <input type="number" name="quantity" id="quantity" required>
-    <label for="quantity">Cкидка(за всё):</label>
-    <input type="number" name="discount" id="discount" required>
-    <br>
-    <button type="submit">Продать</button>
+    <button type="submit">Добавить</button>
 </form>
 </body>
 </html>

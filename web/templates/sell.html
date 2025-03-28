@@ -6,8 +6,20 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+<div class="menu">
+    <a href="/">Список комплектующих</a>
+    <a href="/sell">Продать комплектующие</a>
+    <a href="/soldParts">Список проданных комплектующих</a>
+    <a href="/addPC">Собрать компьютер</a>
+
+</div>
+<div class="menu">
+    <a href="/listPc">Список компьютеров</a>
+    <a href="/volodyaListPc">Список компьютеров Володя</a>
+    <a href="/soldPc">Список проданных компьютеров</a>
+</div>
 <h1>Продажа товара</h1>
-<form action="/sell" method="POST">
+<form action="/sell" method="POST" class="form_container"/>
     <label for="product_id">Выберите товар:</label>
     <select name="product_id" id="product_id">
         {{range .products}}

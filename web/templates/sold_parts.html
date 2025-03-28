@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Товары</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="menu">
+  <a href="/">Список комплектующих</a>
+  <a href="/sell">Продать комплектующие</a>
+  <a href="/soldParts">Список проданных комплектующих</a>
+  <a href="/addPC">Собрать компьютер</a>
+
+</div>
+<div class="menu">
+  <a href="/listPc">Список компьютеров</a>
+  <a href="/volodyaListPc">Список компьютеров Володя</a>
+  <a href="/soldPc">Список проданных компьютеров</a>
+</div>
+<h1>Список проданных товаров</h1>
+<table>
+  <tr>
+    <th>ID продажи</th>
+    <th>Название</th>
+    <th>Дата продажи</th>
+    <th>Скидка</th>
+    <th>Количество</th>
+    <th>Сумма продажи</th>
+  </tr>
+  {{range .parts}}
+  <tr>
+    <td>{{.ID}}</td>
+    <td>{{.PartName}}</td>
+    <td>{{.SaleDate}}</td>
+    <td>{{.Discount}}</td>
+    <td>{{.Quantity}}</td>
+    <td>{{.SaleSum}}</td>
+  </tr>
+  {{end}}
+</table>
+</body>
+</html>

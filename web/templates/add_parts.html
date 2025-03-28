@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сборка компьютера</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="menu">
+    <a href="/">Список комплектующих</a>
+    <a href="/sell">Продать комплектующие</a>
+    <a href="/soldParts">Список проданных комплектующих</a>
+    <a href="/addPC">Собрать компьютер</a>
+
+</div>
+<div class="menu">
+    <a href="/listPc">Список компьютеров</a>
+    <a href="/volodyaListPc">Список компьютеров Володя</a>
+    <a href="/soldPc">Список проданных компьютеров</a>
+</div>
+<h1>Добавить комплектующие</h1>
+<form action="/addParts" method="POST" class="form_container">
+    <label for="gpu_name">Категория:</label>
+    <select name="gpu_name" id="gpu_name">
+        {{range .category}}
+        <option value="{{.categoryVal}}">{{.categoryVal}}</option>
+        {{end}}
+    </select>
+
+    <label for="name">Название:</label>
+    <input name="name" id="name" type="text">
+    <label for="quantity">Количество:</label>
+    <input name="quantity" id="quantity" type="number" >
+    <label for="procurement">Закупочная:</label>
+    <input name="procurement" id="procurement" type="number">
+    <label for="price">Цена на продажу:</label>
+    <input name="price" id="price" type="number">
+    <label for="new">Новое</label>
+    <input type="new" id="new" name="new" />
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

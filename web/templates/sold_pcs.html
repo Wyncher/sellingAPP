@@ -18,28 +18,23 @@
     <a href="/volodyaListPc">Список компьютеров Володя</a>
     <a href="/soldPc">Список проданных компьютеров</a>
 </div>
-<h1>Список товаров</h1>
+<h1>Список проданных компьютеров</h1>
+{{.error}}
 <table>
     <tr>
-        <th>ID</th>
-        <th>Название</th>
-        <th>Категория</th>
-        <th>Цена закупки</th>
-        <th>Цена</th>
-        <th>Прибыль с 1</th>
-        <th>Количество</th>
-        <th>Новый</th>
+        <th>ID продажи</th>
+        <th>ID компьютера</th>
+        <th>Дата продажи</th>
+        <th>Сумма продажи</th>
+        <th>Прибыль</th>
     </tr>
-    {{range .products}}
+    {{range .pc}}
     <tr>
         <td>{{.ID}}</td>
-        <td>{{.Name}}</td>
-        <td>{{.Category}}</td>
-        <td>{{.Procurement}}</td>
-        <td>{{.Price}}</td>
-        <td>{{.Profit}}</td>
-        <td>{{.Quantity}}</td>
-        <td>{{.New}}</td>
+        <td>{{.PcID}}</td>
+        <td>{{.SaleDate}}</td>
+        <td>{{.SaleSum}}</td>
+        <td>{{.Total}}</td>
     </tr>
     {{end}}
 </table>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Компьютеры</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="menu">
+    <a href="/">Список комплектующих</a>
+    <a href="/sell">Продать комплектующие</a>
+    <a href="/soldParts">Список проданных комплектующих</a>
+    <a href="/addPC">Собрать компьютер</a>
+
+</div>
+<div class="menu">
+    <a href="/listPc">Список компьютеров</a>
+    <a href="/volodyaListPc">Список компьютеров Володя</a>
+    <a href="/soldPc">Список проданных компьютеров</a>
+</div>
+<h1>Список компьютеров</h1>
+<form action="/listPc" method="POST">
+    <input type="number" name="pcid" id="pcid">
+    <input type="number" name="discount" id="discount">
+    <button type="submit">Продать</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Процессор</th>
+        <th>Охлаждение</th>
+        <th>Материнская плата</th>
+        <th>Оперативная память</th>
+        <th>Видеокарта</th>
+        <th>SSD</th>
+        <th>HDD</th>
+        <th>Корпус</th>
+        <th>Вентиляторы</th>
+        <th>Блок питания</th>
+        <th>Закупка</th>
+        <th>Продажа</th>
+    </tr>
+
+    {{.error}}
+
+    {{range .pc}}
+
+    <tr>
+        <td>{{.Sold}} {{.ID}}</td>
+        <td>{{.Cpu}}</td>
+        <td>{{.CpuFan}}</td>
+        <td>{{.Mb}}</td>
+        <td>{{.Ram1}}<br>{{.Ram2}}<br>{{.Ram3}}<br>{{.Ram4}}</td>
+        <td>{{.Gpu}}</td>
+        <td>{{.Ssd1}} {{.Ssd2}}</td>
+        <td>{{.Hdd}}</td>
+        <td>{{.Case}}</td>
+        <td>{{.CaseFan}} * {{.CaseFanCount}}</td>
+        <td>{{.Power}}</td>
+        <td>{{.Procurement}}</td>
+        <td>{{.Profit}}</td>
+    </tr>
+    {{end}}
+</table>
+</body>
+</html>

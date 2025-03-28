@@ -30,7 +30,15 @@ func SetupProductRoutes(r *gin.Engine, db *sql.DB) {
 		products, _ := repo.GetAll()
 		c.HTML(http.StatusOK, "sell.html", gin.H{"products": products})
 	})
-
+	// Страница с проданными комплектующими
+	r.GET("/soldParts", func(c *gin.Context) {
+		parts, err := repo.SoldParts()
+		if err != nil {
+			c.HTML(http.StatusInternalServerError, "sold_pcs.html", gin.H{"error": "Ошибка получения данных"})
+			return
+		}
+		c.HTML(http.StatusOK, "sold_parts.html", gin.H{"parts": parts})
+	})
 	// API для продажи товара
 	r.POST("/sell", func(c *gin.Context) {
 		productName := c.PostForm("product_id")
@@ -44,5 +52,31 @@ func SetupProductRoutes(r *gin.Engine, db *sql.DB) {
 			return
 		}
 		c.Redirect(http.StatusSeeOther, "/")
+	})
+	// Страница добавления комплектующих
+	r.POST("/addParts", func(c *gin.Context) {
+
+		if err != nil {
+			c.HTML(http.StatusBadRequest, "addParts.html", gin.H{"error": err.Error()})
+			return
+		}
+		c.HTML(http.StatusOK, "addParts.html", gin.H{})
+	})
+	// Страница добавления комплектующих
+	r.POST("/addParts", func(c *gin.Context) {
+		procurement, err := strconv.Atoi(c.PostForm("procurement"))
+		price, err := strconv.Atoi(c.PostForm("price"))
+		name := c.PostForm("name")
+		category := c.PostForm("category")
+		additional := ""
+		newStatus := c.PostForm("new")
+		quantity, err := strconv.Atoi(c.PostForm("quantity"))
+
+		err = service.AddProduct(procurement, price, name, additional, newStatus, category, quantity)
+		if err != nil {
+			c.HTML(http.StatusBadRequest, "addParts.html", gin.H{"error": err.Error()})
+			return
+		}
+		c.HTML(http.StatusOK, "addParts.html", gin.H{})
 	})
 }

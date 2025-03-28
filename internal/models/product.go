@@ -12,3 +12,18 @@ type Product struct {
 	New         bool   `json:"new"`
 	Quantity    int    `json:"quantity"`
 }
+
+// Структура записи для отображения продаж комплектующих
+type SoldParts struct {
+	ID       int    `json:"id"`
+	SaleDate string `json:"saledate"`
+	PartName string `json:"partid"`
+	SaleSum  int    `json:"salesum"`
+	Quantity int    `json:"quantity"`
+	Discount int    `json:"discount"`
+}
+
+// Структура категорий
+type Category struct {
+	CategoryVal string `json:"categoryval"`
+}
